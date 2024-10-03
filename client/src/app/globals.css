@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  @apply text-sm;
+  @apply bg-white;
+  @apply dark:bg-black;
+}
+:root {
+  --background: #ffffff; /* Light background */
+  --foreground: #000000; /* Light foreground */
+}
+
+.dark {
+  --background: #000000; /* Dark background */
+  --foreground: #ffffff; /* Dark foreground */
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

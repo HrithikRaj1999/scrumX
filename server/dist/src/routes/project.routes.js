@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const project_controllers_1 = require("../controllers/project.controllers");
+const validationMiddleware_1 = require("../middleware/validationMiddleware");
+const project_schema_1 = require("../validationSchemas/project.schema");
+const projectRoutes = (0, express_1.Router)();
+projectRoutes.get("/", project_controllers_1.getProjects);
+projectRoutes.post("/", (0, validationMiddleware_1.validateData)(project_schema_1.createProjectSchema), project_controllers_1.createProject);
+exports.default = projectRoutes;
