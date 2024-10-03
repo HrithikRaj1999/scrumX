@@ -1,10 +1,11 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import projectRoutes from "./routes/project.routes";
+import taskRoutes from "./routes/task.routes";
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
+
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`); // display server running message on console.log
 });

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const task_controllers_1 = require("../controllers/task.controllers");
+const validations_middleware_1 = require("../middleware/validations.middleware");
+const task_schemas_1 = require("../validationSchemas/task.schemas");
+const taskRoutes = (0, express_1.Router)();
+taskRoutes.get("/", (0, validations_middleware_1.validateParamsAndQuery)(task_schemas_1.getTasksSchema), task_controllers_1.getTasks);
+taskRoutes.post("/", (0, validations_middleware_1.validateData)(task_schemas_1.createTaskSchema), task_controllers_1.createTask);
+exports.default = taskRoutes;

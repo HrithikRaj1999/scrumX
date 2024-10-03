@@ -43,6 +43,7 @@ export const createTask = async (
     authorUserId,
     assignedUserId,
   } = req.body;
+  
   try {
     const newTask = await prisma.task.create({
       data: {

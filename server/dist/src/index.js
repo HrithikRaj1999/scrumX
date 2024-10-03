@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const project_routes_1 = __importDefault(require("./routes/project.routes"));
+const task_routes_1 = __importDefault(require("./routes/task.routes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
     res.send("Welcome to the scrum project management  API");
 });
 app.use("/api/projects", project_routes_1.default);
+app.use("/api/tasks", task_routes_1.default);
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`); // display server running message on console.log
 });
