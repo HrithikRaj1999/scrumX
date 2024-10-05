@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, Moon, Search, Settings, Sun } from "lucide-react";
 import Link from "next/link";
-import useNavbar from "@/hooks/useNavbar";
+import useNavbar from "@/hooks/Navbar/useNavbar";
 import SearchInputBox from "../Util/SearchInputBox";
 
 const Navbar = () => {
@@ -39,6 +39,9 @@ const Navbar = () => {
             <Moon className="h-6 w-6 cursor-pointer dark:text-white" />
           )}
         </button>
+        <div className="ml-2 mr-5 min-h-[2em] w-[0.1rem] bg-gray-200 hidden md:inline-block">
+          {" "}
+        </div>
         <Link
           href="/settings"
           className={
@@ -49,9 +52,6 @@ const Navbar = () => {
         >
           <Settings className="h-6 w-6 cursor-pointer text-black dark:text-white" />
         </Link>
-        <div className="ml-2 mr-5 min-h-[2em] w-[0.1rem] bg-gray-200 hidden md:inline-block">
-          {" "}
-        </div>
       </div>
     </div>
   );

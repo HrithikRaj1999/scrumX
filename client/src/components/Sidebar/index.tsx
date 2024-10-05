@@ -40,7 +40,7 @@ const SideBar = () => {
     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
   const dispatch = useAppDispatch();
   const SideBarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl
-  transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auti bg-white
+  transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white
   w-64  ${isSidebarCollapsed ? "w-0 hidden" : "  w-64"}
   `;
   return (
@@ -99,16 +99,20 @@ const SideBar = () => {
             <ChevronUp className="h-8 w-8" />
           )}
         </button>
-        {showProjects
-          ? projects?.map((project) => (
+
+        {showProjects ? (
+          <div className="overflow-y-scroll min-h-[100px]">
+            {projects?.map((project) => (
               <SideBarLinks
                 key={project.id}
                 icon={BriefcaseIcon}
                 label={project.name}
                 href={`/projects/${project.id}`}
               />
-            ))
-          : null}
+            ))}
+          </div>
+        ) : null}
+
         {/**Priority */}
         <button
           onClick={handleShowPriority}

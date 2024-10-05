@@ -44,7 +44,7 @@ export interface Task {
   priority?: Priority;
   tags?: string;
   startDate?: string;
-  dueDate?: number;
+  dueDate?: string;
   points?: number;
   projectId: number;
   authorUserId?: number;
@@ -89,7 +89,7 @@ export const api = createApi({
     }),
     updateTaskStatus: builder.mutation<
       Task,
-      { taskId: number; status: Status }
+      { taskId: number; status: string }
     >({
       query: ({ taskId, status }) => ({
         url: `tasks/${taskId}/status`,
@@ -108,4 +108,5 @@ export const {
   useCreateProjectMutation,
   useGetTasksQuery,
   useCreateTaskMutation,
+  useUpdateTaskStatusMutation,
 } = api;

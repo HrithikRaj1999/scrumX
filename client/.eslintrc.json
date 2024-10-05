@@ -1,6 +1,11 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "rules": {
-    "no-unused-vars": "off"
-  }
+  "overrides": [
+    {
+      "files": ["/src/*", "file-pattern*.js"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ]
 }

@@ -27,8 +27,3 @@ body,
   --background: #000000; /* Dark background */
   --foreground: #ffffff; /* Dark foreground */
 }
-
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
