@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the scrum project management  API");
 });
 
-app.use("/api/projects", projectRoutes);
-app.use("/api/tasks", taskRoutes);
+app.use("/projects", projectRoutes);
+app.use("/tasks", taskRoutes);
 
 
 

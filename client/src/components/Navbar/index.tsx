@@ -2,6 +2,7 @@ import React from "react";
 import { Menu, Moon, Search, Settings, Sun } from "lucide-react";
 import Link from "next/link";
 import useNavbar from "@/hooks/useNavbar";
+import SearchInputBox from "../Util/SearchInputBox";
 
 const Navbar = () => {
   const {
@@ -20,14 +21,7 @@ const Navbar = () => {
             onClick={handleToggleSidebar}
           />
         ) : null}
-        <div className="relative flex h-min w-[200px]">
-          <Search className="absolute left-[4px] top-1/2 mr-2 h-5 w-5 -translate-y-1/2 transform cursor-pointer dark:text-white"></Search>
-          <input
-            className=" w-full p-2 pl-8 text-sm text-gray-700 bg-gray-100  dark:bg-gray-400 border-none rounded-md placeholder:gray-600 focus:ouline-none dark:text-white dark:placeholder-white"
-            type="search"
-            placeholder="Search..."
-          />
-        </div>
+        <SearchInputBox />
       </div>
 
       <div className="flex items-center">

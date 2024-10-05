@@ -1,11 +1,13 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
+import { useGetProjectQuery } from "@/state/api";
 import {
   AlertCircle,
   AlertOctagon,
   AlertTriangle,
   Briefcase,
+  BriefcaseIcon,
   ChevronDown,
   ChevronUp,
   Home,
@@ -30,7 +32,7 @@ const SideBar = () => {
   const [showPriority, setShowPriority] = useState(true);
   const handleShowProjects = () => setShowProjects((prev) => !prev);
   const handleShowPriority = () => setShowPriority((prev) => !prev);
-
+  const { data: projects } = useGetProjectQuery();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed
   );
@@ -97,7 +99,16 @@ const SideBar = () => {
             <ChevronUp className="h-8 w-8" />
           )}
         </button>
-
+        {showProjects
+          ? projects?.map((project) => (
+              <SideBarLinks
+                key={project.id}
+                icon={BriefcaseIcon}
+                label={project.name}
+                href={`/projects/${project.id}`}
+              />
+            ))
+          : null}
         {/**Priority */}
         <button
           onClick={handleShowPriority}

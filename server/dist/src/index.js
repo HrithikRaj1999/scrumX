@@ -24,8 +24,8 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("Welcome to the scrum project management  API");
 });
-app.use("/api/projects", project_routes_1.default);
-app.use("/api/tasks", task_routes_1.default);
+app.use("/projects", project_routes_1.default);
+app.use("/tasks", task_routes_1.default);
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`); // display server running message on console.log
 });

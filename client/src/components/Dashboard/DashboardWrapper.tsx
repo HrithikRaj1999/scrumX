@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
-import Navbar from "./(components)/Navbar";
-import SideBar from "./(components)/Sidebar";
-import StoreProvider, { useAppSelector } from "./redux";
+import Navbar from "@/components/Navbar";
+import SideBar from "@/components/Sidebar";
+import StoreProvider, { useAppSelector } from "../../app/redux";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isSideBarCollapsed = useAppSelector(
@@ -18,7 +18,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     }
   }, [isDarkMode]);
   return (
-    <div className="flex  duration-300 min-h-screen w-full bg-gray-50 text-gray-900">
+    <div className="flex  min-h-screen w-full bg-gray-50 text-gray-900">
       <SideBar />
       <main
         className={`flex w-full flex-col bg-gray-50 dark:bg-black ${
