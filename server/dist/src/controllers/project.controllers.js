@@ -30,6 +30,13 @@ exports.getProjects = getProjects;
 const createProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, description, startDate, endDate } = req.body;
     try {
+        const existingProject = yield project.findFirst({ where: { name } });
+        if (existingProject) {
+            res
+                .status(http_status_codes_1.StatusCodes.CONFLICT)
+                .json({ message: "Project with the same name already exists" });
+            return;
+        }
         const newProject = yield project.create({
             data: {
                 name,
@@ -39,12 +46,14 @@ const createProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             },
         });
         res.status(http_status_codes_1.StatusCodes.CREATED).json(newProject);
+        return;
     }
     catch (error) {
         console.log(error);
         res
             .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
             .json({ message: `Error creating a project: ${error.message}` });
+        return;
     }
 });
 exports.createProject = createProject;

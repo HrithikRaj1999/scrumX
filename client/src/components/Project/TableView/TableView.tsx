@@ -94,6 +94,7 @@ const TableView = ({ id, setModalOpenForNewTask }: Props) => {
       </div>
       <DataGrid
         rows={tasks || []}
+        getRowId={(task) => task.id}
         columns={COLUMNS}
         className={dataGridClassNames}
         sx={dataGridSxStyles(isDarkMode)}

@@ -5,7 +5,7 @@ export const dataGridClassNames =
     return {
       // Styling for column headers
       "& .MuiDataGrid-columnHeaders": {
-        color: `${isDarkMode ? "#e5e7eb" : ""}`,
+        color: `${isDarkMode ? "white" : ""}`,
         '& [role="row"] > *': {
           backgroundColor: `${isDarkMode ? "#1d1f21" : "white"}`,
           borderColor: `${isDarkMode ? "#2d3135" : ""}`,

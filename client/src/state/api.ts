@@ -3,7 +3,7 @@ export interface Project {
   id: number;
   name: string;
   description?: string;
-  startDat?: string;
+  startDate?: string;
   endDate?: string;
 }
 

@@ -21,7 +21,7 @@ const TimelineView = ({ id, setModalOpenForNewTask }: Props) => {
 
   const [displayOptions, setDisplayOptions] = useState<DisplayOption>({
     viewMode: ViewMode.Month,
-    locale: "en-IN",
+    locale: "en-US",
   });
 
   const ganttTasks = useMemo(() => {
@@ -39,7 +39,7 @@ const TimelineView = ({ id, setModalOpenForNewTask }: Props) => {
   }, [tasks]);
 
   const handleViewModeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setDisplayOptions((prev) => ({
       ...prev,
@@ -82,7 +82,7 @@ const TimelineView = ({ id, setModalOpenForNewTask }: Props) => {
         </div>
         <div className="px-4 pb-5 pt-1">
           <button
-            className="flex items-center rounded bg-blue-400 px-3 py-2 text-black hover:bg-blue-600"
+            className="flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600"
             onClick={() => setModalOpenForNewTask(true)}
           >
             Add New Task

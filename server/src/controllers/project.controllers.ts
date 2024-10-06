@@ -26,6 +26,13 @@ export const createProject = async (
 ): Promise<void> => {
   const { name, description, startDate, endDate } = req.body;
   try {
+    const existingProject = await project.findFirst({ where: { name } });
+    if (existingProject) {
+      res
+        .status(StatusCodes.CONFLICT)
+        .json({ message: "Project with the same name already exists" });
+      return;
+    }
     const newProject = await project.create({
       data: {
         name,
@@ -35,10 +42,12 @@ export const createProject = async (
       },
     });
     res.status(StatusCodes.CREATED).json(newProject);
+    return;
   } catch (error: any) {
     console.log(error);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ message: `Error creating a project: ${error.message}` });
+    return;
   }
 };
