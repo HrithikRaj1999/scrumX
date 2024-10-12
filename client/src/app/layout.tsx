@@ -1,8 +1,8 @@
+
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import DashboardWrapper from "../components/Dashboard/DashboardWrapper";
-
+import AuthProvider from "@/components/auth/AuthProvider";
 export const metadata: Metadata = {
   title: " ScrumX",
   description:
@@ -17,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <DashboardWrapper>{children}</DashboardWrapper>
+        <AuthProvider>
+          <DashboardWrapper>{children}</DashboardWrapper>
+        </AuthProvider>
       </body>
     </html>
   );
