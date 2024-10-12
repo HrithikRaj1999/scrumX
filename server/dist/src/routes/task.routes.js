@@ -8,4 +8,5 @@ const taskRoutes = (0, express_1.Router)();
 taskRoutes.get("/", task_controllers_1.getTasks);
 taskRoutes.patch("/:taskId/status", task_controllers_1.updateTaskStatus);
 taskRoutes.post("/", (0, validations_middleware_1.validateData)(task_schemas_1.createTaskSchema), task_controllers_1.createTask);
+taskRoutes.get("/user/:userId", task_controllers_1.getUserTasks);
 exports.default = taskRoutes;

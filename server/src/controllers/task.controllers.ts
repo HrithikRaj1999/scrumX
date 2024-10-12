@@ -43,7 +43,7 @@ export const createTask = async (
     authorUserId,
     assignedUserId,
   } = req.body;
-  
+
   try {
     const newTask = await prisma.task.create({
       data: {
@@ -85,7 +85,9 @@ export const updateTaskStatus = async (
     });
     res.json(updatedTask);
   } catch (error: any) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: `Error updating task: ${error.message}` });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: `Error updating task: ${error.message}` });
   }
 };
 

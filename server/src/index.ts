@@ -6,13 +6,16 @@ import helmet from "helmet";
 import morgan from "morgan";
 import projectRoutes from "./routes/project.routes";
 import taskRoutes from "./routes/task.routes";
+import searchRoute from "./routes/search.routes";
+import userRoute from "./routes/user.route";
+import teamRoute from "./routes/team.routes";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(morgan("common"));
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
@@ -25,7 +28,9 @@ app.get("/", (req, res) => {
 
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
-
+app.use("/search", searchRoute);
+app.use("/users", userRoute);
+app.use("/teams", teamRoute);
 
 
 app.listen(process.env.PORT, () => {

@@ -78,7 +78,9 @@ const updateTaskStatus = (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.json(updatedTask);
     }
     catch (error) {
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ message: `Error updating task: ${error.message}` });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ message: `Error updating task: ${error.message}` });
     }
 });
 exports.updateTaskStatus = updateTaskStatus;
