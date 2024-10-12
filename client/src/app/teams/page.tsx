@@ -32,7 +32,7 @@ const columns: GridColDef[] = [
         <span>{params.value}</span>
         <div className="h-9 w-9">
           <Image
-            src={`/${params.row.productOwnerImageUrl}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${params.row.productOwnerImageUrl}`}
             alt={params.row.username}
             width={100}
             height={50}
@@ -51,7 +51,7 @@ const columns: GridColDef[] = [
         <span>{params.value}</span>
         <div className="h-9 w-9">
           <Image
-            src={`/${params.row.projectManagerImageUrl}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${params.row.projectManagerImageUrl}`}
             alt={params.row.username}
             width={100}
             height={50}

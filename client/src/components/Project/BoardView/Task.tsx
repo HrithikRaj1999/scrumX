@@ -106,7 +106,7 @@ export default function Task({ task }: TaskProps) {
             {task.assignee && (
               <Image
                 key={task.assignee.userId}
-                src={`/${task.assignee.profilePictureUrl!}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${task.assignee.profilePictureUrl!}`}
                 alt={task.assignee.username}
                 title={"Assignee : " + task.assignee.username}
                 width={30}
@@ -117,7 +117,7 @@ export default function Task({ task }: TaskProps) {
             {task.author && (
               <Image
                 key={task.author.userId}
-                src={`/${task.author.profilePictureUrl!}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${task.author.profilePictureUrl!}`}
                 alt={task.author.username}
                 title={"Author : " + task.author.username}
                 width={30}

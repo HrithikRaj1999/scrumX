@@ -2,6 +2,14 @@
 const nextConfig = {
   images: {
     domains: ["img.freepik.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        host: "https://scrumx-s3-images.s3.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
