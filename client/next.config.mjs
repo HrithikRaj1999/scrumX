@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        host: "https://scrumx-s3-images.s3.amazonaws.com",
+        hostname: "scrumx-s3-images.s3.amazonaws.com",
         port: "",
         pathname: "/**",
       },
