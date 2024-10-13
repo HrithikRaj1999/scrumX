@@ -8,14 +8,15 @@ Amplify.configure({
   Auth: {
     Cognito: {
       userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID || "",
-      userPoolClientId:process.env.NEXT_PUBLIC_COGNITO_USER_POOL_CLIENT_ID || "", 
+      userPoolClientId:
+        process.env.NEXT_PUBLIC_COGNITO_USER_POOL_CLIENT_ID || "",
     },
   },
 });
 
 const AuthProvider = ({ children }: any) => {
   return (
-    <div className="mt-5">
+    <div>
       <Authenticator formFields={FORM_FIELDS}>
         {({ user }: any) => {
           return user ? (
