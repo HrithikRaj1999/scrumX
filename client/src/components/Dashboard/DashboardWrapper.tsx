@@ -8,8 +8,8 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isSideBarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed
   );
+  
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
@@ -17,6 +17,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       document.body.classList.remove("dark");
     }
   }, [isDarkMode]);
+
   return (
     <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
       <SideBar />

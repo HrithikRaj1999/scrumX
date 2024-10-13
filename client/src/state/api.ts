@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 export interface Project {
   id: number;
   name: string;
@@ -68,13 +69,42 @@ export interface Team {
   projectManagerUserId?: number;
 }
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL! }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL!,
+    //this will attach beaer tokken to each api endpoints
+    prepareHeaders: async (headers) => {
+      const session = await fetchAuthSession();
+      const { accessToken } = session.tokens ?? {};
+      if (accessToken) {
+        headers.set("Authorization", `Bearer ${accessToken}`);
+      }
+      return headers;
+    },
+  }),
   reducerPath: "api",
   tagTypes: ["Projects", "Tasks", "Search", "Users", "Teams"], //it will be used to invalidate the current project
   endpoints: (builder) => ({
     getProject: builder.query<Project[], void>({
       query: () => "projects",
       providesTags: ["Projects"],
+    }),
+    getAuthUser: builder.query({
+      queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
+        try {
+          const user = await getCurrentUser();
+          const session = await fetchAuthSession();
+          if (!session) throw new Error("No session found");
+          const { userSub } = session;
+          const { accessToken } = session.tokens ?? {};
+
+          const userDetailsResponse = await fetchWithBQ(`users/${userSub}`);
+          const userDetails = userDetailsResponse.data as User;
+
+          return { data: { user, userSub, userDetails } };
+        } catch (error: any) {
+          return { error: error.message || "Could not fetch user data" };
+        }
+      },
     }),
     createProject: builder.mutation<Project[], Partial<Project>>({
       query: (projects) => ({
@@ -132,10 +162,10 @@ export const api = createApi({
       query: () => "teams",
       providesTags: ["Teams"],
     }),
-    
   }),
 });
 export const {
+  useGetAuthUserQuery,
   useGetProjectQuery,
   useCreateProjectMutation,
   useGetTasksQuery,
@@ -144,5 +174,5 @@ export const {
   useSearchQuery,
   useGetTeamsQuery,
   useGetUsersQuery,
-  useGetTasksByUserQuery
+  useGetTasksByUserQuery,
 } = api;
